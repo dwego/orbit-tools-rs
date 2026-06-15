@@ -1,0 +1,3 @@
+pub const EARTH_RADIUS_KM: f64 = 6378.137;
+pub const EARTH_MU_KM3_S2: f64 = 398600.4418;
+pub const SECONDS_PER_DAY: f64 = 86400.0;
