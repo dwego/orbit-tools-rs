@@ -1,8 +1,10 @@
 use clap::{Parser, Subcommand};
 use crate::orbit::CircularOrbit;
+use crate::utils::{create_data_file, create_writer, print_data};
 
 mod constants;
 pub mod orbit;
+pub mod utils;
 
 #[derive(Parser, Debug)]
 #[command(about = "Small orbital mechanics toolkit")]
@@ -19,6 +21,7 @@ enum Commands {
     },
 }
 
+
 fn main() {
     let cli = Cli::parse();
 
@@ -32,16 +35,10 @@ fn main() {
                 }
             };
 
-            println!("Orbit type: circular");
-            println!("Altitude: {:.2} km", orbit.altitude_km);
-            println!("Radius: {:.2} km", orbit.radius_km());
-            println!("Velocity: {:.3} km/s", orbit.velocity_km_s());
-            println!("Period: {:.2} min", orbit.period_minutes());
-            println!("Orbits/day: {:.2}", orbit.orbits_per_day());
-            println!(
-                "Specific energy: {:.3} km²/s²",
-                orbit.specific_energy_km2_s2()
-            );
+            let writer = create_writer("data/orbit.csv").expect("failed to create writer");
+            create_data_file(writer, &orbit).expect("failed to write orbit data");
+
+            print_data(&orbit);
         }
     }
 }
