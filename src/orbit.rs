@@ -13,6 +13,30 @@ impl CircularOrbit {
         Ok(Self { altitude_km })
     }
 
+    pub fn sweep(start_km: f64, end_km: f64, step_km: f64) -> Result<Vec<Self>, String> {
+        if start_km <= 0.0 {
+            return Err("start altitude must be positive".to_string());
+        }
+
+        if end_km < start_km {
+            return Err("end altitude must be greater than or equal to start altitude".to_string());
+        }
+
+        if step_km <= 0.0 {
+            return Err("step must be positive".to_string());
+        }
+
+        let mut orbits = Vec::new();
+        let mut altitude_km = start_km;
+
+        while altitude_km <= end_km {
+            orbits.push(Self::new(altitude_km)?);
+            altitude_km += step_km;
+        }
+
+        Ok(orbits)
+    }
+
     pub fn radius_km(&self) -> f64 {
         EARTH_RADIUS_KM + self.altitude_km
     }
