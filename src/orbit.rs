@@ -24,8 +24,8 @@ impl CircularOrbit {
 
     pub fn period(&self) -> f64 {
         let semi_major_axis_km = EARTH_RADIUS_KM + self.altitude_km;
-        let period_seconds = (2.0 * std::f64::consts::PI * semi_major_axis_km.powf(1.5)) / (EARTH_MU_KM3_S2).sqrt();
-        period_seconds / SECONDS_PER_DAY
+        (2.0 * std::f64::consts::PI * semi_major_axis_km.powf(1.5)) / (EARTH_MU_KM3_S2).sqrt()
+
     }
 
     pub fn period_minutes(&self) -> f64 {
