@@ -1,2 +1,0 @@
-distance_km,frequency_mhz,tx_power_dbm,tx_gain-dbi,rx_gain_dbi,wavelength_m,quarter_wave_antenna_m,free_space_path_loss_db,EIRP_dbm,received_power_dbm
-447.00,6000.00,30.00,2.00,12.00,0.67,0.17,161.01,32.00,-117.01
